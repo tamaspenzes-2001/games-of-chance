@@ -9,14 +9,10 @@ from rich.console import Console
 console = Console()
 
 def coin_flip(bet_amount):
-  console.print("Your bet:")
-  bet = select(["Heads", "Tails"], cursor="O" if os.name=="nt" else "💰")
-  clear_screen()
+  bet = make_bet(["Heads", "Tails"])
   console.print(f"Your bet: {bet}")
   console.print(f"Bet amount: {bet_amount}")
-  spinner_char = "O" if os.name=="nt" else "🪙"
-  spinner_animation = [f"{spinner_char}    \n      ", f"  {spinner_char}  \n      ", f"    {spinner_char}\n      ", f"      \n    {spinner_char}", f"      \n  {spinner_char}  ", f"      \n{spinner_char}    "]
-  spinner = Spinner(spinner_animation, "Flipping coin...")
+  spinner = create_spinner("🪙", "O", "Flipping coin...")
   spinner.start()
   sleep(5)
   result = random.choice(["Heads", "Tails"])
@@ -30,14 +26,10 @@ def coin_flip(bet_amount):
     return -(bet_amount)
 
 def cho_han(bet_amount):
-  console.print("Your bet:")
-  bet = select(["Odd", "Even"], cursor="O" if os.name=="nt" else "💰")
-  clear_screen()
+  bet = make_bet(["Even", "Odd"])
   console.print(f"Your bet: {bet}")
   console.print(f"Bet amount: {bet_amount}")
-  spinner_char = "■" if os.name=="nt" else "🎲"
-  spinner_animation = [f"{spinner_char}    \n      ", f"  {spinner_char}  \n      ", f"    {spinner_char}\n      ", f"      \n    {spinner_char}", f"      \n  {spinner_char}  ", f"      \n{spinner_char}    "]
-  spinner = Spinner(spinner_animation, "Roll dices...")
+  spinner = create_spinner("🎲", "■", "Rolling dices...")
   spinner.start()
   sleep(5)
   dice1 = random.randint(1, 6)
@@ -57,6 +49,18 @@ def card_draw(bet_amount):
 
 def roulette(bet_amount):
   pass
+
+def make_bet(options):
+  console.print("Your bet:")
+  bet = select(options, cursor="$" if os.name=="nt" else "💰")
+  clear_screen()
+  return bet
+
+def create_spinner(spinner_char, spinner_char_windows, spinner_text):
+  spinner_char = spinner_char_windows if os.name=="nt" else spinner_char
+  spinner_animation = [f"{spinner_char}    \n      ", f"  {spinner_char}  \n      ", f"    {spinner_char}\n      ", f"      \n    {spinner_char}", f"      \n  {spinner_char}  ", f"      \n{spinner_char}    "]
+  spinner = Spinner(spinner_animation, spinner_text)
+  return spinner
 
 def get_bet_amount(money_available):
   while True:
@@ -85,13 +89,14 @@ def main():
         sys.exit()
     else:
       clear_screen()
+      print(game_type)
       bet_amount = get_bet_amount(money)
       outcome = {
-        0: coin_flip(bet_amount),
-        1: cho_han(bet_amount),
-        2: card_draw(bet_amount),
-        3: roulette(bet_amount),
-      }.get(game_type)
+        0: coin_flip,
+        1: cho_han,
+        2: card_draw,
+        3: roulette,
+      }.get(game_type)(bet_amount)
       money += outcome
       input("\nPress Enter to continue")
     clear_screen()
