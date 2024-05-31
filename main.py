@@ -45,7 +45,22 @@ def cho_han(bet_amount):
     return -(bet_amount)
 
 def card_draw(bet_amount):
-  pass
+  options = list(range(1, 11))
+  console.print(f"Bet amount: {bet_amount}")
+  spinner = create_spinner("🃏", "O", "Drawing cards...")
+  spinner.start()
+  sleep(5)
+  player_card = options.pop(random.randint(0, len(options)-1))
+  opponent_card = options.pop(random.randint(0, len(options)-1))
+  spinner.stop()
+  console.print(f"You drew {player_card}.")
+  console.print(f"Your opponent drew {opponent_card}.")
+  if (player_card > opponent_card):
+    console.print(f"[green1]You earned {bet_amount} dollars![/green1]")
+    return bet_amount
+  else:
+    console.print(f"[salmon1]You lost {bet_amount} dollars![/salmon1]")
+    return -(bet_amount)
 
 def roulette(bet_amount):
   pass
@@ -65,7 +80,7 @@ def create_spinner(spinner_char, spinner_char_windows, spinner_text):
 def get_bet_amount(money_available):
   while True:
     try:
-      bet_amount = prompt("How much you bet?")
+      bet_amount = prompt(f"How much you bet? (1-{money_available})")
       if 0 < int(bet_amount) <= money_available:
         return int(bet_amount)
       else:
@@ -89,7 +104,6 @@ def main():
         sys.exit()
     else:
       clear_screen()
-      print(game_type)
       bet_amount = get_bet_amount(money)
       outcome = {
         0: coin_flip,
