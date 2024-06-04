@@ -3,6 +3,7 @@ import os
 from beaupy import confirm, prompt, select
 from rich.console import Console
 import games
+import roulette_game
 from utils import clear_screen
 
 console = Console()
@@ -36,7 +37,7 @@ def main():
         0: games.coin_flip,
         1: games.cho_han,
         2: games.card_draw,
-        3: games.roulette,
+        3: roulette_game.roulette,
       }.get(game_type)(bet_amount)
       money += outcome
       input("\nPress Enter to continue")

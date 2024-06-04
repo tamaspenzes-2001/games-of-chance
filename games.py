@@ -2,7 +2,7 @@ import utils
 import random
 import os
 from time import sleep
-from beaupy import select
+from beaupy import select, prompt
 from rich.console import Console
 
 console = Console()
@@ -60,9 +60,6 @@ def card_draw(bet_amount):
   else:
     console.print(f"[salmon1]You lost {bet_amount} dollars![/salmon1]")
     return -(bet_amount)
-
-def roulette(bet_amount):
-  pass
 
 def make_bet(options):
   console.print("Your bet:")
