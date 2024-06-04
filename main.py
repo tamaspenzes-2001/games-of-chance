@@ -23,7 +23,7 @@ def main():
   money = 100
   console.print("[green1]Welcome to our casino![/green1]")
   while True:
-    console.print(f"[yellow]You currently have {money} dollars.[/yellow]")
+    console.print(f"[yellow1]You currently have {money} dollars.[/yellow1]")
     console.print("[cyan1]Choose a game type:[/cyan1]")
     game_type = select(["Coin flip", "Cho-Han", "Card draw", "Roulette", "[salmon1]Quit[/salmon1]"], cursor="$" if os.name=='nt' else "💸", return_index=True)
     if game_type == 4:
