@@ -1,4 +1,3 @@
-import sys
 import os
 from beaupy import confirm, prompt, select
 from rich.console import Console
@@ -29,7 +28,7 @@ def main():
     game_type = select(["Coin flip", "Cho-Han", "Card draw", "Roulette", "[salmon1]Quit[/salmon1]"], cursor="$" if os.name=='nt' else "💸", return_index=True)
     if game_type == 4:
       if confirm("Are you sure you want to quit? All your sweet dollars will be lost."):
-        sys.exit()
+        return
     else:
       clear_screen()
       bet_amount = get_bet_amount(money)
