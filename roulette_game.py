@@ -28,6 +28,7 @@ def roulette(bet_amount):
     return -(multiplied_bet_amount)
 
 def make_roulette_bet():
+  console.print("Click to see roulette table", style="link https://www.feedbackcasino.com/images/games/nextgen/double-zero-roulette/Double-ZeroRoulette.png")
   console.print("[cyan1]Choose a bet type:[/cyan1]")
   bet_categories = ["Inside (higher payout, lower winrate)", "Outside (lower payout, higher winrate)"]
   chosen_category = select(bet_categories, cursor="$" if os.name=="nt" else "💰")
