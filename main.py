@@ -27,7 +27,9 @@ def main():
     console.print("[cyan1]Choose a game type:[/cyan1]")
     game_type = select(["Coin flip", "Cho-Han", "Card draw", "Roulette", "[salmon1]Quit[/salmon1]"], cursor="$" if os.name=='nt' else "💸", return_index=True)
     if game_type == 4:
+      clear_screen()
       if confirm("Are you sure you want to quit? All your sweet dollars will be lost."):
+        console.print("Sad to see you go. Bye!")
         return
     else:
       clear_screen()
