@@ -11,7 +11,7 @@ def coin_flip(bet_amount):
   bet = make_bet(["Heads", "Tails"])
   console.print(f"Your bet: {bet}")
   console.print(f"Bet amount: {bet_amount}")
-  spinner = utils.create_spinner("🪙", "O", "Flipping coin...")
+  spinner = utils.create_spinner("🌕", "O", "Flipping coin...")
   spinner.start()
   sleep(5)
   result = random.choice(["Heads", "Tails"])
