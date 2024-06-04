@@ -22,7 +22,7 @@ def get_bet_amount(money_available):
 def main():
   clear_screen()
   money = 100
-  console.print("[green1]Welcome![/green1]")
+  console.print("[green1]Welcome to our casino![/green1]")
   while True:
     console.print(f"[yellow]You currently have {money} dollars.[/yellow]")
     console.print("[cyan1]Choose a game type:[/cyan1]")
@@ -42,5 +42,8 @@ def main():
       money += outcome
       input("\nPress Enter to continue")
     clear_screen()
+    if money <= 0:
+      console.print("[salmon1]You lost all your money! You are kicked out of casino![/salmon1]")
+      return
 
 main()
